@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 15:10:50 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:57:58 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 15:06:17 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int	get_xchars_count(unsigned long long nbr, t_flags flags)
+int			get_xchars_count(unsigned long long nbr, t_flags flags)
 {
 	int	len;
 
@@ -28,6 +28,27 @@ int	get_xchars_count(unsigned long long nbr, t_flags flags)
 	return (len);
 }
 
+static int	print_hex(unsigned long long nbr, t_flags flags, int upcase)
+{
+	int	hash;
+
+	hash = 0;
+	if (flags.hash == 1)
+	{
+		if (write(1, "0x", 2) == -1)
+			return (-1);
+		hash = 2;
+	}
+	if (flags.zero == 1)
+	{
+		if (ft_putllu_base(nbr, 16, flags.field_width - hash, upcase) == -1)
+			return (-1);
+	}
+	else if (ft_putllu_base(nbr, 16, flags.precision, upcase) == -1)
+		return (-1);
+	return (0);
+}
+
 /*
 ** FLAGS: '#' '0' '-' MFW OP
 ** 'l' = unsigned long 'll' = unsigned long long
@@ -35,7 +56,7 @@ int	get_xchars_count(unsigned long long nbr, t_flags flags)
 ** Prints alphabetical chars in uppercase if upcase != 0.
 */
 
-int	convert_hex(va_list start, t_flags flags, int upcase)
+int			convert_hex(va_list start, t_flags flags, int upcase)
 {
 	unsigned long long	nbr;
 	int					chars;
@@ -47,20 +68,8 @@ int	convert_hex(va_list start, t_flags flags, int upcase)
 	if (flags.zero == 0 && flags.minus == 0 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
-	if (nbr != 0 || flags.precision != 0)
-	{
-		if (flags.hash == 1)
-			if (write(1, "0x", 2) == -1)
-				return (-1);
-		if (flags.zero == 1)
-		{
-			if (ft_putllu_base(nbr, 16,
-			flags.field_width - chars + ft_unumlen_base(nbr, 16), upcase) == -1)
-				return (-1);
-		}
-		else if (ft_putllu_base(nbr, 16, flags.precision, upcase) == -1)
-			return (-1);
-	}
+	if (!(nbr == 0 && flags.precision == 0))
+		print_hex(nbr, flags, upcase);
 	if (flags.minus == 1 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
