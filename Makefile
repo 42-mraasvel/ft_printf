@@ -6,7 +6,7 @@
 #    By: mraasvel <mraasvel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/09 20:13:52 by mraasvel      #+#    #+#                  #
-#    Updated: 2020/11/15 16:11:09 by mraasvel      ########   odam.nl          #
+#    Updated: 2020/11/16 14:31:29 by mraasvel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ SRC = ft_printf.c conversion.c\
 	convert_unsigned_digit.c\
 	convert_hex.c\
 	convert_n.c\
-	conversion_utils.c\
-	ft_putnbr_hex.c
+	conversion_utils.c
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 CC = gcc
