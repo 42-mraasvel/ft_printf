@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 09:34:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 10:17:30 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 10:26:04 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int					convert_digit(va_list start, t_flags flags)
 
 	nbr = get_signed_nbr(start, flags);
 	chars = get_dchars_count(nbr, flags);
-	if (flags.precision >= 0)
+	if (flags.precision >= 0 || flags.minus == 1)
 		flags.zero = 0;
 	if (flags.minus == 0 && flags.zero == 0 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
