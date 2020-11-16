@@ -1,0 +1,5 @@
+pft/
+libft.a
+libftprintf.a
+*.o
+a.out
