@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 15:10:50 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 15:06:17 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 15:13:33 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			get_xchars_count(unsigned long long nbr, t_flags flags)
 		return (0);
 	len = ft_unumlen_base(nbr, 16);
 	len = len > flags.precision ? len : flags.precision;
-	if (flags.hash == 1)
+	if (flags.hash == 1 && nbr != 0)
 		len += 2;
 	return (len);
 }
@@ -33,9 +33,14 @@ static int	print_hex(unsigned long long nbr, t_flags flags, int upcase)
 	int	hash;
 
 	hash = 0;
-	if (flags.hash == 1)
+	if (flags.hash == 1 && nbr != 0)
 	{
-		if (write(1, "0x", 2) == -1)
+		if (upcase != 0)
+		{
+			if (write(1, "0X", 2) == -1)
+				return (-1);
+		}
+		else if (write(1, "0x", 2) == -1)
 			return (-1);
 		hash = 2;
 	}
