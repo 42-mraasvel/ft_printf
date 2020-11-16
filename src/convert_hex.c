@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 15:10:50 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:54:23 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 14:57:58 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,20 @@ int	convert_hex(va_list start, t_flags flags, int upcase)
 	if (flags.zero == 0 && flags.minus == 0 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
-	if (flags.zero == 1)
+	if (nbr != 0 || flags.precision != 0)
 	{
-		if (ft_putllu_base(nbr, 16,
-		flags.field_width - ft_unumlen_base(nbr, 16), upcase) == -1)
+		if (flags.hash == 1)
+			if (write(1, "0x", 2) == -1)
+				return (-1);
+		if (flags.zero == 1)
+		{
+			if (ft_putllu_base(nbr, 16,
+			flags.field_width - chars + ft_unumlen_base(nbr, 16), upcase) == -1)
+				return (-1);
+		}
+		else if (ft_putllu_base(nbr, 16, flags.precision, upcase) == -1)
 			return (-1);
 	}
-	else if (ft_putllu_base(nbr, 16, flags.precision, upcase) == -1)
-		return (-1);
 	if (flags.minus == 1 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
