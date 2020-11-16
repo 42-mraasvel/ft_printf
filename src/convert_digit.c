@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 09:34:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 10:12:41 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 10:17:30 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static long long	get_signed_nbr(va_list start, t_flags flags)
 /*
 ** Returns amount of chars that will be printed.
 */
-
+#include <stdio.h>
 static int			get_dchars_count(long long nbr, t_flags flags)
 {
 	int len;
@@ -46,7 +46,7 @@ static int			get_dchars_count(long long nbr, t_flags flags)
 		return (len);
 	len += ft_numlen_base(nbr, 10);
 	if (flags.precision > len &&
-	(flags.plus = 1 || flags.space == 1 || nbr < 0))
+	(flags.plus == 1 || flags.space == 1 || nbr < 0))
 		return (flags.precision + 1);
 	return (len > flags.precision ? len : flags.precision);
 }
