@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 21:13:55 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/15 16:35:42 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 09:55:50 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 
 int	main(void)
 {
-	printf("ft_printf:\n");
-	ft_printf("|%0x|", 0);
-	printf("\nprintf:\n");
-	printf("|%0x|", 0);
-	printf("\n");
+	int return_val;
+
+	ft_printf("|");
+	return_val = ft_printf("%0+4d", 10);
+	ft_printf("|\n");
+	printf("return: %d\n", return_val);
 	return (0);
 }
