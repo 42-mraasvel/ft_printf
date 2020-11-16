@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 15:10:50 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:53:10 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 14:54:23 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	convert_hex(va_list start, t_flags flags, int upcase)
 			return (-1);
 	if (flags.zero == 1)
 	{
-		if (ft_putllu_base(nbr, 16, flags.field_width - chars, upcase) == -1)
+		if (ft_putllu_base(nbr, 16,
+		flags.field_width - ft_unumlen_base(nbr, 16), upcase) == -1)
 			return (-1);
 	}
 	else if (ft_putllu_base(nbr, 16, flags.precision, upcase) == -1)
