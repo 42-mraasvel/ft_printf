@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 09:34:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 10:27:02 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 14:14:13 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static long long	get_signed_nbr(va_list start, t_flags flags)
 /*
 ** Returns amount of chars that will be printed.
 */
-#include <stdio.h>
+
 static int			get_dchars_count(long long nbr, t_flags flags)
 {
 	int len;
@@ -107,8 +107,3 @@ int					convert_digit(va_list start, t_flags flags)
 			return (-1);
 	return (chars > flags.field_width ? chars : flags.field_width);
 }
-
-/*
-** If precision AND number == 0, number itself WILL NOT be printed.
-** If '+' or SPACE is active, it will be printed with NBR == 0 (EVEN if precision is also 0).
-*/
