@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/15 16:08:51 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 14:40:33 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 ** Signs to signal which flags are on.
 */
 
-typedef struct	s_flags
+typedef struct		s_flags
 {
 	int		hash;
 	int		zero;
@@ -37,49 +37,50 @@ typedef struct	s_flags
 	int		ll;
 	int		h;
 	int		hh;
-}				t_flags;
+}					t_flags;
 
-int				ft_printf(const char *format, ...);
+int					ft_printf(const char *format, ...);
 
 /*
 ** conversion.c
 */
 
-int				conversion(const char *format, size_t *i, va_list start, int n);
+int					conversion(const char *format, size_t *i, va_list start, int n);
 
 /*
 ** flagsequence.c / flagsequence_utils.c
 */
 
-int				ft_is_printf_flag(char c);
-int				check_max_accepted_value(const char *number);
-t_flags			flags_sequence_one(const char *format, size_t *i);
-t_flags			flags_sequence_two(const char *format, size_t *i,
-				t_flags flags, va_list start);
-t_flags			flags_sequence_three(const char *format,
-				size_t *i, t_flags flags);
+int					ft_is_printf_flag(char c);
+int					check_max_accepted_value(const char *number);
+t_flags				flags_sequence_one(const char *format, size_t *i);
+t_flags				flags_sequence_two(const char *format, size_t *i,
+					t_flags flags, va_list start);
+t_flags				flags_sequence_three(const char *format,
+					size_t *i, t_flags flags);
 
 /*
 ** convert_*.c functions
 */
 
-int				convert_percentage(t_flags flags);
-int				convert_character(va_list start, t_flags flags);
-int				convert_string(va_list start, t_flags flags);
-int				convert_pointer(va_list start, t_flags flags);
-int				convert_digit(va_list start, t_flags flags);
-int				convert_udigit(va_list start, t_flags flags);
-int				convert_hex(va_list start, t_flags flags, int upcase);
-int				convert_n(va_list start, t_flags flags, int n);
+int					convert_percentage(t_flags flags);
+int					convert_character(va_list start, t_flags flags);
+int					convert_string(va_list start, t_flags flags);
+int					convert_pointer(va_list start, t_flags flags);
+int					convert_digit(va_list start, t_flags flags);
+int					convert_udigit(va_list start, t_flags flags);
+int					convert_hex(va_list start, t_flags flags, int upcase);
+int					convert_n(va_list start, t_flags flags, int n);
 
 /*
 ** ft_putnbr_hex.c
 ** conversion_utils.c
 ** I will put these functions in libft.
 */
-int				ft_putnbr_hex(unsigned long long nbr, int upcase, int min_len);
-int				put_field_width(int field_width, int zero);
+
+int					put_field_width(int field_width, int zero);
 // better version of put_field_width.
-int				put_fw(int field_width, int zero);
+int					put_fw(int field_width, int zero);
+unsigned long long	get_unsigned_nbr(va_list start, t_flags flags);
 
 #endif

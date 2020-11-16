@@ -6,31 +6,14 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 09:34:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:26:49 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 14:39:32 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-unsigned long long	get_unsigned_nbr(va_list start, t_flags flags)
-{
-	unsigned long long	nbr;
-
-	if (flags.l == 1)
-		nbr = (unsigned long)va_arg(start, unsigned long);
-	else if (flags.ll == 1)
-		nbr = va_arg(start, unsigned long long);
-	else if (flags.h == 1)
-		nbr = (unsigned short)va_arg(start, unsigned int);
-	else if (flags.hh == 1)
-		nbr = (unsigned char)va_arg(start, unsigned int);
-	else
-		nbr = (unsigned int)va_arg(start, unsigned int);
-	return (nbr);
-}
-
-int					get_uchars_count(unsigned long long nbr, t_flags flags)
+static int			get_uchars_count(unsigned long long nbr, t_flags flags)
 {
 	int	len;
 

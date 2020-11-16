@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/12 19:43:46 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/14 21:42:58 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/16 14:39:25 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	put_n_chars_fast(int n, unsigned char c)
 	return (n);
 }
 
+// remove this function
 int	put_field_width(int field_width, int zero)
 {
 	int				bytes_written;
@@ -77,4 +78,21 @@ int	put_fw(int field_width, int zero)
 	else if (ft_putnofc(field_width, ' ') == -1)
 		return (-1);
 	return (field_width);
+}
+
+unsigned long long	get_unsigned_nbr(va_list start, t_flags flags)
+{
+	unsigned long long	nbr;
+
+	if (flags.l == 1)
+		nbr = (unsigned long)va_arg(start, unsigned long);
+	else if (flags.ll == 1)
+		nbr = va_arg(start, unsigned long long);
+	else if (flags.h == 1)
+		nbr = (unsigned short)va_arg(start, unsigned int);
+	else if (flags.hh == 1)
+		nbr = (unsigned char)va_arg(start, unsigned int);
+	else
+		nbr = (unsigned int)va_arg(start, unsigned int);
+	return (nbr);
 }
