@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/12 21:24:08 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/15 16:17:03 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/18 11:41:24 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int			convert_pointer(va_list start, t_flags flags)
 	if (flags.minus == 1 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
-	return (chars);
+	return (chars > flags.field_width ? chars : flags.field_width);
 }

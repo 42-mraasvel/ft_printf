@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 09:34:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:14:13 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/18 11:45:05 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int			get_dchars_count(long long nbr, t_flags flags)
 	if (nbr == 0 && flags.precision == 0)
 		return (len);
 	len += ft_numlen_base(nbr, 10);
-	if (flags.precision > len &&
+	if (flags.precision >= len &&
 	(flags.plus == 1 || flags.space == 1 || nbr < 0))
 		return (flags.precision + 1);
 	return (len > flags.precision ? len : flags.precision);
