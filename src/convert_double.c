@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/18 16:37:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/18 18:30:52 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/18 22:40:34 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	get_fchars_count(t_bits nbr, t_flags flags, int *tenth_exp)
 	if (flags.precision != 0 || (flags.precision == 0 && flags.hash == 1))
 		chars++;
 	if (nbr.bitfields.sign == 1 || flags.space == 1 || flags.plus == 1)
-		chars++;;
+		chars++;
 	chars += decimal_digits > 0 ? decimal_digits : 1;
 	return (chars);
 }
