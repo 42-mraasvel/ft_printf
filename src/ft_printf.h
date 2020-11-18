@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:40:33 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/18 18:05:16 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ typedef struct		s_flags
 }					t_flags;
 
 int					ft_printf(const char *format, ...);
+
+/*
+** Union to extract bits from double;
+** for floating point conversion.
+*/
+
+typedef union		u_bits
+{
+	double			number;
+	struct 			s_bitfields
+	{
+		uint64_t	mant : 52;
+		uint32_t	expo : 11;
+		uint32_t	sign : 1;
+	}				bitfields;
+}					t_bits;
 
 /*
 ** conversion.c

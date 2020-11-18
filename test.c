@@ -6,15 +6,28 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 21:13:55 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/18 11:43:13 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/18 18:20:50 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <wchar.h>
+#include <float.h>
 #include <locale.h>
 #include "src/libft.h"
 #include "src/ft_printf.h"
+
+union				test
+{
+	double			v;
+	struct 			s_test
+	{
+		uint64_t	mant : 52;
+		uint32_t	expo : 11;
+		uint32_t	sign : 1;
+	}				s;
+};
+
 
 /*
 ** '#' '0' '-' ' ' '+'
@@ -35,6 +48,14 @@ void	printf_compare_function(char *format)
 
 int	main(void)
 {
-	printf_compare_function("%.*i");
+	union test	un;
+
+	un.v = 1238;
+	put_binary_representation_of_area(&un.v, 8);
+	printf("\n");
+	un.s.expo = 0;
+	un.s.sign = 1;
+	un.s.mant = 23;
+	printf("%+010.10000f\n", un.v);
 	return (0);
 }
