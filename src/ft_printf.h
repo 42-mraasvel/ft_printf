@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/18 18:05:16 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 08:29:19 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ typedef union		u_bits
 	double			number;
 	struct 			s_bitfields
 	{
-		uint64_t	mant : 52;
-		uint32_t	expo : 11;
-		uint32_t	sign : 1;
+		unsigned long long	mant : 52;
+		unsigned int	expo : 11;
+		unsigned int	sign : 1;
 	}				bitfields;
 }					t_bits;
 

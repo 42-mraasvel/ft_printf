@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 21:13:55 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/18 18:20:50 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 08:31:32 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ union				test
 	double			v;
 	struct 			s_test
 	{
-		uint64_t	mant : 52;
-		uint32_t	expo : 11;
-		uint32_t	sign : 1;
+		unsigned long long	mant : 52;
+		unsigned int	expo : 11;
+		unsigned int	sign : 1;
 	}				s;
 };
 
@@ -53,9 +53,9 @@ int	main(void)
 	un.v = 1238;
 	put_binary_representation_of_area(&un.v, 8);
 	printf("\n");
-	un.s.expo = 0;
+	un.s.expo = 2047;
 	un.s.sign = 1;
-	un.s.mant = 23;
-	printf("%+010.10000f\n", un.v);
+	un.s.mant = 1;
+	printf("%+.0f\n", un.v);
 	return (0);
 }
