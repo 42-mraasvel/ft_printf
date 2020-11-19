@@ -6,23 +6,24 @@
 #    By: mraasvel <mraasvel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/09 20:13:52 by mraasvel      #+#    #+#                  #
-#    Updated: 2020/11/16 14:31:29 by mraasvel      ########   odam.nl          #
+#    Updated: 2020/11/19 09:37:44 by mraasvel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 LIBFT = libft/libft.a
-SRC = ft_printf.c conversion.c\
-	flagsequence.c flagsequence_utils.c\
-	convert_percentage.c\
-	convert_character.c\
-	convert_string.c\
-	convert_pointer.c\
-	convert_digit.c\
-	convert_unsigned_digit.c\
-	convert_hex.c\
-	convert_n.c\
-	conversion_utils.c
+# SRC = ft_printf.c conversion.c\
+# 	flagsequence.c flagsequence_utils.c\
+# 	convert_percentage.c\
+# 	convert_character.c\
+# 	convert_string.c\
+# 	convert_pointer.c\
+# 	convert_digit.c\
+# 	convert_unsigned_digit.c\
+# 	convert_hex.c\
+# 	convert_n.c\
+# 	conversion_utils.c
+SRC = $(shell find $(SRCDIR) -name "*.c" -exec basename {} \;)
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 CC = gcc

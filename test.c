@@ -28,7 +28,6 @@ union				test
 	}				s;
 };
 
-
 /*
 ** '#' '0' '-' ' ' '+'
 ** Field Width, Precision, '*' .*
@@ -50,12 +49,12 @@ int	main(void)
 {
 	union test	un;
 
-	un.v = 1238;
+	un.v = 1238.2345;
 	put_binary_representation_of_area(&un.v, 8);
 	printf("\n");
 	un.s.expo = 2047;
 	un.s.sign = 0;
 	un.s.mant = 0;
-	printf("%+.0f\n", un.v);
+	ft_printf("|%23f|\n", un.v);
 	return (0);
 }

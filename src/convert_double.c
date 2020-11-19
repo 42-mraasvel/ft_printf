@@ -6,32 +6,41 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/18 16:37:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/18 22:40:34 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 10:12:39 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
 #include "ft_printf.h"
 
-// check for nan, inf and update zero flag?
-static int	get_fchars_count(t_bits nbr, t_flags flags, int *tenth_exp)
+static int	double_edgecases(t_bits nbr, t_flags flags)
 {
-	int	decimal_digits;
-	int	chars;
-
-	if (nbr.bitfields.expo != 2047)
+	if (nbr.bitfields.expo == 2047 && nbr.bitfields.mant != 0)
 	{
-		decimal_digits == ft_get_tenth_exp(nbr.number);
-		chars = flags.precision == -1 ? 6 : flags.precision;
+		if (write(1, "nan", 3) == -1)
+			return (-1);
+		return (0);
 	}
-	else
-		chars = 3;
-	if (flags.precision != 0 || (flags.precision == 0 && flags.hash == 1))
-		chars++;
-	if (nbr.bitfields.sign == 1 || flags.space == 1 || flags.plus == 1)
-		chars++;
-	chars += decimal_digits > 0 ? decimal_digits : 1;
-	return (chars);
+	if (nbr.bitfields.sign == 1)
+	{
+		if (write(1, "-", 1) == -1)
+			return (-1);
+	}
+	else if (flags.plus == 1)
+	{
+		if (write(1, "+", 1) == -1)
+			return (-1);
+	}
+	else if (flags.space == 1)
+		if (write(1, " ", 1) == -1)
+			return (-1);
+	if (nbr.bitfields.expo == 2047 && nbr.bitfields.mant == 0)
+	{
+		if (write(1, "inf", 3) == -1)
+			return (-1);
+	}
+	return (0);
 }
 
 /*
@@ -41,18 +50,55 @@ static int	get_fchars_count(t_bits nbr, t_flags flags, int *tenth_exp)
 ** 2. nan (not a number): Exponent == 2047(max val) and Mantissa != 0.
 ** 3. Zero: Exponent == 0 && Mantissa == 0. Can be positive or negative.
 ** 4. Subnormals: Exponent == 0 && Mantissa != 0.
+** Prints sign and leading zero's, or inf/nan.
 */
 
-static int	put_floating_point_number(t_bits nbr, t_flags flags, int chars)
+static int	ft_printf_double(t_bits nbr, t_flags flags, int chars)
 {
-	if (nbr.bitfields.sign == 0 && flags.plus == 1)
+	if (double_edgecases(nbr, flags) == -1)
+		return (-1);
+	if (nbr.bitfields.expo == 2047)
+		return (chars);
+	if (flags.zero == 1 && flags.field_width > chars)
+		if (put_fw(flags.field_width - chars, 1) == -1)
+			return (-1);
+	nbr.bitfields.sign = 0;
+	if (flags.precision == 0 && flags.hash == 1)
+		if (write(1, ".", 1) == -1)
+			return (-1);
+	return (chars);
+}
+
+/*
+** If 'nan' chars = 3.
+** If 'inf' chars = 3 or 4 (depends on sign/flags)
+** Else chars = integer count + precision(fraction count) + possible sign.
+** If integer count is <= 0; we have to put 1 number before the radix point.
+** If precision == 0 and hash is not active, we won't write a radix point
+*/
+
+static int	get_fchars_count(t_bits nbr, t_flags flags)
+{
+	int	chars;
+	int	decimals;
+
+	if (nbr.bitfields.expo == 2047 && nbr.bitfields.mant != 0)
+		return (3);
+	if (nbr.bitfields.expo == 2047 && nbr.bitfields.mant == 0)
+		chars = 3;
+	else
 	{
-		if (write(1, "+", 1) == -1)
-			return (-1);
+		decimals = ft_get_tenth_exp(nbr.number);
+		chars = flags.precision == -1 ? 6 : flags.precision;
 	}
-	else if (nbr.bitfields.sign == 0 && flags.space == 0)
-		if (write(1, " ", 1) == -1)
-			return (-1);
+	if (nbr.bitfields.sign == 1 || flags.space == 1 || flags.plus == 1)
+		chars++;
+	if (nbr.bitfields.expo == 2047)
+		return (chars);
+	chars += decimals > 0 ? decimals : 1;
+	if (flags.precision != 0 || flags.hash == 1)
+		chars++;
+	return (chars);
 }
 
 /*
@@ -66,24 +112,20 @@ static int	put_floating_point_number(t_bits nbr, t_flags flags, int chars)
 ** For inf or nan: leading zero's are not printed.
 */
 
-int			convert_float(va_list start, t_flags flags)
+int			convert_double(va_list start, t_flags flags)
 {
 	t_bits	nbr;
-	int		tenth_exp;
 	int		chars;
 
 	nbr.number = va_arg(start, double);
 	if (flags.minus == 1 || nbr.bitfields.expo == 2047)
 		flags.zero = 0;
-	chars = get_fchars_count(nbr, flags, &tenth_exp);
+	chars = get_fchars_count(nbr, flags);
 	if (flags.zero == 0 && flags.minus == 0 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
-	
-	// print point if there were no decimals printed, but hash specified it should be.
-	if (flags.precision == 0 && flags.hash == 1)
-		if (write(1, ".", 1) == -1)
-			return (-1);
+	if (ft_printf_double(nbr, flags, chars) == -1)
+		return (-1);
 	if (flags.minus == 1 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);

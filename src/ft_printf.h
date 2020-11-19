@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 08:29:19 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 09:48:57 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,23 @@ int					ft_printf(const char *format, ...);
 
 typedef union		u_bits
 {
-	double			number;
-	struct 			s_bitfields
+	double					number;
+	struct			s_bitfields
 	{
 		unsigned long long	mant : 52;
-		unsigned int	expo : 11;
-		unsigned int	sign : 1;
-	}				bitfields;
+		unsigned int		expo : 11;
+		unsigned int		sign : 1;
+	}						bitfields;
 }					t_bits;
+
+int					ft_printf_double(t_bits nbr, t_flags flags, int chars);
 
 /*
 ** conversion.c
 */
 
-int					conversion(const char *format, size_t *i, va_list start, int n);
+int					conversion(const char *format,
+					size_t *i, va_list start, int n);
 
 /*
 ** flagsequence.c / flagsequence_utils.c
@@ -87,6 +90,7 @@ int					convert_digit(va_list start, t_flags flags);
 int					convert_udigit(va_list start, t_flags flags);
 int					convert_hex(va_list start, t_flags flags, int upcase);
 int					convert_n(va_list start, t_flags flags, int n);
+int					convert_double(va_list start, t_flags flags);
 
 /*
 ** ft_putnbr_hex.c
@@ -94,8 +98,6 @@ int					convert_n(va_list start, t_flags flags, int n);
 ** I will put these functions in libft.
 */
 
-int					put_field_width(int field_width, int zero);
-// better version of put_field_width.
 int					put_fw(int field_width, int zero);
 unsigned long long	get_unsigned_nbr(va_list start, t_flags flags);
 
