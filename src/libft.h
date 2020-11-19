@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 19:27:20 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/14 22:17:55 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/18 17:04:07 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ ssize_t				ft_putnofc(size_t n, unsigned char c);
 ssize_t				ft_putstr_p(char *str, ssize_t precision);
 void				ft_free(int cnt, ...);
 int					ft_isspace(int c);
+int					put_binary_representation_of_area(void *area, size_t n);
+int					put_hex_representation_of_area(void *area, size_t n);
 
 /*
 ** Number functions
@@ -100,5 +102,12 @@ int					ft_putll(long long nbr, int precision);
 int					ft_putllu(unsigned long long nbr, int precision);
 int					ft_putllu_base(unsigned long long nbr,
 					int base, int precision, int upcase);
+
+/*
+** math functions
+*/
+
+double				ft_exponent(double x, double pow);
+int					ft_get_tenth_exp(double value);
 
 #endif

@@ -1,0 +1,63 @@
+FLOATS
+
+NOTES:
+	PRECISION + k = total printed digits.
+
+Steps:
+
+1. Get the power of 10.
+2. Get the power of 2 from the bits.
+3. Get the sign from the bits.
+
+Rounding:
+
+Round the first number, so for 10^0, and round all the floating point digits.
+
+Checks:
+
+If the exponent is 0 : this number is either +0, -0 or a denormal
+If the exponent is 2^12 - 1: this number is either +inf -inf or NaN.
+
+Rounding:
+
+If the number should be printed out, we need to round it properly according to the rounding rules.
+if the number is > 5: round up.
+if the number is < 5: round down.
+if the number is exactly .500, round to the nearest even (if it's the first non-floating point digit), or round up if it's a floating point digit.
+
+Printing:
+
+Requirements:
+
+Original double value.
+Integer 'k' representing the power of 10's.
+Integer precision for how many floating point numbers we should print.
+
+If k >= 0: the first digit is 1-9, and integers should be printed.
+Else: a 0 should be printed, and only decimal points.
+
+1. Print decimal values, keep subtracting the previous value from it, so we eventually only have 
+
+
+Printf steps:
+
+What do we print based on the flags?
+
+Hash: ALWAYS print a decimal point, even if precision is 0.
+0: Leading zero's instead of FIELD WIDTH (unless '-'' flag is present!)
+-: field width after number
+' ': space or plus before positive number (like negative sign).
+'+': same as space.
+
+Field Width: should be printed before the sign, UNLESS '0' flag is specified.
+Precision: Determines how many digits after the radix point are printed.
+
+Length modifiers: ignored.
+
+!Printing values 
+
+0. Check chars and adjust the zero flag accordingly (nan, inf will never print leading zero's for example)
+1. Print field width before the floating point (No '0' flag).
+2. Print the digit.
+3. Print field width if the '0' flag was specified.
+4. return total chars printed.
