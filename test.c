@@ -25,10 +25,12 @@
 int	main(void)
 {
 	int return_val;
+	int	(*print)(const char *format, ...);
 
-	ft_printf("|");
-	return_val = ft_printf("%0*d", -7, -54);
-	ft_printf("|\n");
-	printf("return: %d\n", return_val);
+	print = &printf;
+	print("|");
+	return_val = printf("%#x", 0);
+	print("|\n");
+	print("return: %d\n", return_val);
 	return (0);
 }
