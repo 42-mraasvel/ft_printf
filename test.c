@@ -54,8 +54,8 @@ int	main(void)
 	put_binary_representation_of_area(&un.v, 8);
 	printf("\n");
 	un.s.expo = 2047;
-	un.s.sign = 1;
-	un.s.mant = 1;
+	un.s.sign = 0;
+	un.s.mant = 0;
 	printf("%+.0f\n", un.v);
 	return (0);
 }
