@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/19 18:58:42 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 19:17:00 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 20:55:18 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,14 @@ int	main(void)
 	int			ret;
 	int			ft_ret;
 
-	un.v = 0.000012345;
+	// un.v = 0.1234500000001;
 	// put_binary_representation_of_area(&un.v, 8);
 	// printf("\n");
 	// un.s.expo = 0;
 	// un.s.sign = 0;
 	// un.s.mant = 0;
-	ret = printf("|%g|\n", un.v);
-	// ft_ret = ft_printf("|%#+012.*f|\n", 29347, un.v);
+	// ret = printf("|%g|\n", un.v);
+	ft_ret = ft_printf("%.10f\n", 0.87650894255);
 	printf("\nreturn: %d\nft_ret: %d\n", ret, ft_ret);
-	// printf("len: %ld\n", strlen("134217728.000073"));
 	return (0);
 }
