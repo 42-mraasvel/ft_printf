@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/18 16:37:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 10:12:39 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 18:46:38 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static int	ft_printf_double(t_bits nbr, t_flags flags, int chars)
 		if (put_fw(flags.field_width - chars, 1) == -1)
 			return (-1);
 	nbr.bitfields.sign = 0;
+	if (ft_put_double(nbr.number, flags.precision) == -1)
+		return (-1);
 	if (flags.precision == 0 && flags.hash == 1)
 		if (write(1, ".", 1) == -1)
 			return (-1);
@@ -95,7 +97,7 @@ static int	get_fchars_count(t_bits nbr, t_flags flags)
 		chars++;
 	if (nbr.bitfields.expo == 2047)
 		return (chars);
-	chars += decimals > 0 ? decimals : 1;
+	chars += decimals > 0 ? decimals + 1 : 1;
 	if (flags.precision != 0 || flags.hash == 1)
 		chars++;
 	return (chars);

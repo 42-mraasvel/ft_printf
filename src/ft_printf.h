@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 09:48:57 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 18:39:15 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ typedef union		u_bits
 		unsigned int		sign : 1;
 	}						bitfields;
 }					t_bits;
-
-int					ft_printf_double(t_bits nbr, t_flags flags, int chars);
 
 /*
 ** conversion.c

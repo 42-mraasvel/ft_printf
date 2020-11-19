@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   test.cß                                             :+:    :+:            */
+/*   test.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/14 21:13:55 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 08:31:32 by mraasvel      ########   odam.nl         */
+/*   Created: 2020/11/19 18:58:42 by mraasvel      #+#    #+#                 */
+/*   Updated: 2020/11/19 19:17:00 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <wchar.h>
 #include <float.h>
+#include <string.h>
 #include <locale.h>
 #include "src/libft.h"
 #include "src/ft_printf.h"
@@ -48,13 +49,18 @@ void	printf_compare_function(char *format)
 int	main(void)
 {
 	union test	un;
+	int			ret;
+	int			ft_ret;
 
-	un.v = 1238.2345;
-	put_binary_representation_of_area(&un.v, 8);
-	printf("\n");
-	un.s.expo = 2047;
-	un.s.sign = 0;
-	un.s.mant = 0;
-	ft_printf("|%23f|\n", un.v);
+	un.v = 0.000012345;
+	// put_binary_representation_of_area(&un.v, 8);
+	// printf("\n");
+	// un.s.expo = 0;
+	// un.s.sign = 0;
+	// un.s.mant = 0;
+	ret = printf("|%g|\n", un.v);
+	// ft_ret = ft_printf("|%#+012.*f|\n", 29347, un.v);
+	printf("\nreturn: %d\nft_ret: %d\n", ret, ft_ret);
+	// printf("len: %ld\n", strlen("134217728.000073"));
 	return (0);
 }
