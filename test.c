@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/19 18:58:42 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 20:55:18 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 21:07:17 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	main(void)
 	// un.s.expo = 0;
 	// un.s.sign = 0;
 	// un.s.mant = 0;
-	// ret = printf("|%g|\n", un.v);
-	ft_ret = ft_printf("%.10f\n", 0.87650894255);
+	ret = printf("|%g|\n", 1.10001);
+	// ft_ret = ft_printf("%.10f\n", 0.87650894255);
 	printf("\nreturn: %d\nft_ret: %d\n", ret, ft_ret);
 	return (0);
 }
