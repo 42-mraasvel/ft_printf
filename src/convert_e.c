@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/20 08:49:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 11:26:57 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 15:54:02 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_printf_e(t_bits nbr, t_flags flags, int chars)
 		if (write(1, "-", 1) == -1)
 			return (-1);
 	}
-	if (flags.plus == 1)
+	else if (flags.plus == 1)
 	{
 		if (write(1, "+", 1) == -1)
 			return (-1);
@@ -41,7 +41,8 @@ static int	ft_printf_e(t_bits nbr, t_flags flags, int chars)
 		return (-1);
 	return (chars);
 }
-
+//added +4 to line 54, since I don't think I took the e+00 into account.
+// also the exponent can be 3 digits long!
 static int	get_echars_count(t_bits nbr, t_flags flags)
 {
 	int	chars;

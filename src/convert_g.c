@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/20 10:07:03 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 15:46:18 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 18:33:31 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ static int	get_gchars_count(t_bits nbr, char *digits, t_flags flags, int pow)
 
 static int	print_digits(char *digits, t_flags flags, int pow, int chars)
 {
+	int	len;
+
+	len = ft_strlen(digits);
 	if (flags.zero == 1 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, flags.zero) == -1)
 			return (-1);
@@ -73,7 +76,7 @@ static int	print_digits(char *digits, t_flags flags, int pow, int chars)
 		if (ft_putnofc(-pow - 1, '0') == -1)
 			return (-1);
 	}
-	if (flags.hash == 0 && flags.precision == pow + 1)
+	if (flags.hash == 0 && len == pow + 2)
 		digits[pow + 1] = '\0';
 	if (ft_putstr(digits) == -1)
 		return (-1);
@@ -117,14 +120,14 @@ int			convert_g(va_list start, t_flags flags)
 	char	*digits;
 
 	nbr.number = va_arg(start, double);
-	if (nbr.bitfields.expo == 2047)
-		return (convert_e_for_g(nbr, flags));
-	pow = ft_get_tenth_exp(nbr.number);
 	if (flags.precision < 0)
 		flags.precision = 6;
 	if (flags.precision == 0)
 		flags.precision = 1;
-	if (pow < -4 || pow > flags.precision)
+	if (nbr.bitfields.expo == 2047)
+		return (convert_e_for_g(nbr, flags));
+	pow = ft_get_tenth_exp(nbr.number);
+	if (pow < -4 || (pow + 1) > flags.precision)
 		return (convert_e_for_g(nbr, flags));
 	digits = extract_n_digits_from_double(nbr.number, flags.precision, 1);
 	if (digits == NULL)
