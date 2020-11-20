@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 19:27:20 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 10:03:03 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 11:05:36 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,7 @@ char				*ft_round_double(char *string, double number,
 char				*extract_n_digits_from_double(double unit,
 					unsigned int n, int signif);
 char				*insert_radix_point(char *digits, int pow);
-int					ft_putdouble_sn(double unit, int precision);
-
+int					ft_putdouble_sn(double unit, int precision, int hash);
 /*
 ** math functions
 */

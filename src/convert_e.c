@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/20 08:49:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 10:05:01 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 11:05:51 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_printf_e(t_bits nbr, t_flags flags, int chars)
 	if (nbr.bitfields.expo == 2047)
 		return (write(1, "inf", 1));
 	nbr.bitfields.sign = 0;
-	if (ft_putdouble_sn(nbr.number, flags.precision) == -1)
+	if (ft_putdouble_sn(nbr.number, flags.precision, flags.hash) == -1)
 		return (-1);
 	return (chars);
 }
@@ -77,9 +77,6 @@ int			convert_e(va_list start, t_flags flags)
 			return (-1);
 	if (ft_printf_e(nbr, flags, chars) == -1)
 		return (-1);
-	if (flags.hash == 1 && flags.precision == 0)
-		if (write(1, ".", 1) == -1)
-			return (-1);
 	if (flags.minus == 1 && flags.field_width > chars)
 		if (put_fw(flags.field_width - chars, 0) == -1)
 			return (-1);
