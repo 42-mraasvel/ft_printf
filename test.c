@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/19 18:58:42 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 11:06:22 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 13:50:11 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,9 @@ int	main(void)
 	char	**formats;
 	t_bits	val;
 
-	val.number = 12.0;
-	ft_printf("%#.13e\n", val.number);
+	val.number = 0.01234;
+	ft_printf("%#.4g\n", val.number);
+	// printf("%.3g\n", 123.001);
 	// formats = generate_flags('g');
 	// int i = 0;
 	// while (formats[i] != 0)

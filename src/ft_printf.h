@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 10:05:55 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 11:24:06 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int					convert_hex(va_list start, t_flags flags, int upcase);
 int					convert_n(va_list start, t_flags flags, int n);
 int					convert_double(va_list start, t_flags flags);
 int					convert_e(va_list start, t_flags flags);
+int					convert_g(va_list start, t_flags flags);
+int					convert_e_for_g(t_bits nbr, t_flags flags);
 
 /*
 ** ft_putnbr_hex.c

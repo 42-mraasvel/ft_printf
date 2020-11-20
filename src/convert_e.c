@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/20 08:49:01 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 11:05:51 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 11:26:57 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,26 @@ static int	get_echars_count(t_bits nbr, t_flags flags)
 	if (nbr.bitfields.expo != 2047)
 		chars++;
 	return (chars);
+}
+
+int			convert_e_for_g(t_bits nbr, t_flags flags)
+{
+	int		chars;
+
+	if (flags.precision < 0)
+		flags.precision = 6;
+	if (flags.minus == 1 || nbr.bitfields.expo == 2047)
+		flags.zero = 0;
+	chars = get_echars_count(nbr, flags);
+	if (flags.minus == 0 && flags.zero == 0 && flags.field_width > chars)
+		if (put_fw(flags.field_width - chars, 0) == -1)
+			return (-1);
+	if (ft_printf_e(nbr, flags, chars) == -1)
+		return (-1);
+	if (flags.minus == 1 && flags.field_width > chars)
+		if (put_fw(flags.field_width - chars, 0) == -1)
+			return (-1);
+	return (chars > flags.field_width ? chars : flags.field_width);
 }
 
 int			convert_e(va_list start, t_flags flags)

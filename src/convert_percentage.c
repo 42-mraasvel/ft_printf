@@ -6,14 +6,12 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/15 15:03:58 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/15 16:13:33 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 11:35:13 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
-
-#include <stdio.h>
 
 /*
 ** Flags: '-' '0' Field Width
