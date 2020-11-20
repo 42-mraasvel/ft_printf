@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/19 18:58:42 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 08:48:31 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 09:07:59 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,19 +172,21 @@ char	**generate_flags(char conversion_t)
 int	main(void)
 {
 	char	**formats;
+	t_bits	val;
 
-	// test_edge_float("%+e\n");
-	formats = generate_flags('e');
-	int i = 0;
-	while (formats[i] != 0)
-	{
-		printf("printf(\"");
-		ft_putstr_nonprint(&printf, formats[i]);
-		printf("\");\n");
-		test_edge_float(formats[i]);
-		printf("\n");
-		i++;
-	}
-	free(formats);
+	val.number = 1.234;
+	printf("%.*e\n", -5, val.number);
+	// formats = generate_flags('e');
+	// int i = 0;
+	// while (formats[i] != 0)
+	// {
+	// 	printf("printf(\"");
+	// 	ft_putstr_nonprint(&printf, formats[i]);
+	// 	printf("\");\n");
+	// 	test_edge_float(formats[i]);
+	// 	printf("\n");
+	// 	i++;
+	// }
+	// free(formats);
 	return (0);
 }

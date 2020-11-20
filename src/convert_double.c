@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/18 16:37:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 18:46:38 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 09:08:19 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int			convert_double(va_list start, t_flags flags)
 	int		chars;
 
 	nbr.number = va_arg(start, double);
+	if (flags.precision < 0)
+		flags.precision = 6;
 	if (flags.minus == 1 || nbr.bitfields.expo == 2047)
 		flags.zero = 0;
 	chars = get_fchars_count(nbr, flags);
