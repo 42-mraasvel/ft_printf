@@ -81,7 +81,7 @@ void	printf_compare_function(char *format)
 	printf("return ft_printf: %d\n", ft_return_value);
 }
 
-int	test_edge_float(char *format)
+void	test_edge_float(char *format)
 {
 	union test	uni;
 
@@ -148,23 +148,23 @@ char	**generate_flags(char conversion_t)
 	ft_memcpy(string, "% ", 2);
 	string[2] = conversion_t;
 	formats[2] = ft_strdup(string);
-	ft_memcpy(string, "%-10", 3);
+	ft_memcpy(string, "%-10", 4);
+	string[4] = conversion_t;
+	string[5] = '\n';
+	formats[3] = ft_strdup(string);
+	ft_memcpy(string, "%010", 4);
+	string[4] = conversion_t;
+	formats[4] = ft_strdup(string);
+	ft_memcpy(string, "%.10", 4);
+	string[4] = conversion_t;
+	formats[5] = ft_strdup(string);
+	ft_memcpy(string, "%.1", 3);
 	string[3] = conversion_t;
 	string[4] = '\n';
-	formats[3] = ft_strdup(string);
-	ft_memcpy(string, "%010", 3);
-	string[3] = conversion_t;
-	formats[4] = ft_strdup(string);
-	ft_memcpy(string, "%.10", 3);
-	string[3] = conversion_t;
-	formats[5] = ft_strdup(string);
-	ft_memcpy(string, "%.1", 2);
-	string[2] = conversion_t;
-	string[3] = '\n';
-	string[4] = '\0';
+	string[5] = '\0';
 	formats[6] = ft_strdup(string);
-	ft_memcpy(string, "%.0", 2);
-	string[2] = conversion_t;
+	ft_memcpy(string, "%.0", 3);
+	string[3] = conversion_t;
 	formats[7] = ft_strdup(string);
 	return (formats);
 }

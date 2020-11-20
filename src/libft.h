@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 19:27:20 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 18:31:39 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/19 22:40:26 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ int					ft_putllu(unsigned long long nbr, int precision);
 int					ft_putllu_base(unsigned long long nbr,
 					int base, int precision, int upcase);
 int					ft_put_double(double number, int precision);
-char				*ft_round_double(char *string, double number, int size, int precision);
+char				*ft_round_double(char *string, double number,
+					int size, int precision);
+char				*extract_n_digits_from_double(double unit, unsigned int n);
 
 /*
 ** math functions

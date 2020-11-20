@@ -12,18 +12,18 @@
 
 #include "ft_printf.h"
 
-static int	get_echars_count(t_bits nbr, t_flags flags)
-{
-	int	chars;
+// static int	get_echars_count(t_bits nbr, t_flags flags)
+// {
+// 	int	chars;
 
 	
-}
+// }
 
-int			convert_e(va_list start, t_flags flags)
-{
-	t_bits	nbr;
-	int		chars;
+// int			convert_e(va_list start, t_flags flags)
+// {
+// 	t_bits	nbr;
+// 	int		chars;
 
-	nbr.number = va_arg(start, double);
-	chars = get_echars_count(nbr, flags);
-}
+// 	nbr.number = va_arg(start, double);
+// 	chars = get_echars_count(nbr, flags);
+// }
