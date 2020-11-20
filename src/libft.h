@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 19:27:20 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/19 22:40:26 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/20 10:03:03 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void				ft_free(int cnt, ...);
 int					ft_isspace(int c);
 int					put_binary_representation_of_area(void *area, size_t n);
 int					put_hex_representation_of_area(void *area, size_t n);
+int					ft_putstr(char *str);
 
 /*
 ** Number functions
@@ -105,7 +106,10 @@ int					ft_putllu_base(unsigned long long nbr,
 int					ft_put_double(double number, int precision);
 char				*ft_round_double(char *string, double number,
 					int size, int precision);
-char				*extract_n_digits_from_double(double unit, unsigned int n);
+char				*extract_n_digits_from_double(double unit,
+					unsigned int n, int signif);
+char				*insert_radix_point(char *digits, int pow);
+int					ft_putdouble_sn(double unit, int precision);
 
 /*
 ** math functions
