@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-int	convert_g(va_list start, t_flags flags)
-{
-	t_bits	nbr;
-	int		chars;
+// int	convert_g(va_list start, t_flags flags)
+// {
+// 	t_bits	nbr;
+// 	int		chars;
 
-	nbr.number = va_arg(start, double);
-}
+// 	nbr.number = va_arg(start, double);
+// }

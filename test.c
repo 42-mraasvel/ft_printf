@@ -172,19 +172,19 @@ int	main(void)
 	char	**formats;
 	t_bits	val;
 
-	val.number = 1.234;
-	// printf("%e\n", val.number);
-	formats = generate_flags('g');
-	int i = 0;
-	while (formats[i] != 0)
-	{
-		printf("printf(\"");
-		ft_putstr_nonprint(&printf, formats[i]);
-		printf("\");\n");
-		test_edge_float(formats[i]);
-		printf("\n");
-		i++;
-	}
-	free(formats);
+	val.number = 1234567.0;
+	ft_printf("%#.e\n", val.number);
+	// formats = generate_flags('g');
+	// int i = 0;
+	// while (formats[i] != 0)
+	// {
+	// 	printf("printf(\"");
+	// 	ft_putstr_nonprint(&printf, formats[i]);
+	// 	printf("\");\n");
+	// 	test_edge_float(formats[i]);
+	// 	printf("\n");
+	// 	i++;
+	// }
+	// free(formats);
 	return (0);
 }
