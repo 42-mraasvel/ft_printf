@@ -3,3 +3,4 @@ libft.a
 libftprintf.a
 *.o
 a.out
+a.out.dSYM/
