@@ -94,19 +94,16 @@ int		test_e(int (*print)(const char *format, ...))
 
 int		main(int argc, char **argv)
 {
-	// double	num;
-
-	// num = 9.99;
-	// printf("%.1e\n", num);
-	if (argc == 1)
-	{
-		ft_printf("FT_PRINTF\n");
-		test_e(&ft_printf);
-	}
-	else
-	{
-		printf("PRINTF\n");
-		test_e(&printf);
-	}
+	ft_printf("%.11e\n", 0.000000000010000000);
+	// if (argc == 1)
+	// {
+	// 	ft_printf("FT_PRINTF\n");
+	// 	test_e(&ft_printf);
+	// }
+	// else
+	// {
+	// 	printf("PRINTF\n");
+	// 	test_e(&printf);
+	// }
 	return (0);
 }

@@ -68,7 +68,7 @@ static int	output_e(t_double nbr, t_flags flags, char *digits)
 			return (-1);
 	return (chars > flags.field_width ? chars : flags.field_width);
 }
-
+#include <stdio.h>
 int			convert_e(va_list start, t_flags flags)
 {
 	t_double	nbr;

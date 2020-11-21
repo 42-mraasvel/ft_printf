@@ -28,6 +28,8 @@ static double	extract_n_significant_digits(double num, char *digits, int n)
 		ten /= 10;
 		if (c < 0)
 			c = -c;
+		if (c > 9)
+			c = 1;
 		*digits = c + '0';
 		digits++;
 		n--;
@@ -48,10 +50,12 @@ static char		*create_exponent(int e)
 	if (exponent == NULL)
 		return (NULL);
 	if (e < 0)
-		exponent[0] = '-';
+		exponent[1] = '-';
 	else
-		exponent[0] = '+';
-	exponent[1] = 'e';
+		exponent[1] = '+';
+	exponent[0] = 'e';
+	if (e < 0)
+		e = -e;
 	part_two = ft_llutoa(e, 2);
 	if (part_two == NULL)
 		return (NULL);
@@ -107,7 +111,7 @@ char			*ft_dtoa_e(double num, int precision)
 	digits[precision + 16] = '\0';
 	e = dbl_exponent(num);
 	num = extract_n_significant_digits(num, digits, precision + 16);
-	ft_strlcpy(rounding_digits, digits + precision, 16);
+	ft_strlcpy(rounding_digits, digits + precision + 1, 16);
 	digits[precision + 1] = '\0';
 	digits = ft_round_f(digits, rounding_digits);
 	if (digits == NULL)
