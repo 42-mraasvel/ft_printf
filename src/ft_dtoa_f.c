@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/20 20:45:05 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 12:44:53 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/21 16:28:08 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			*ft_dtoa_f(double nbr, int precision)
 {
 	t_double	d_union;
 	char		*digits;
-	char		rounding_digits[17];
+	char		rounding_digits[16];
 	int			numlen;
 
 	d_union.value = nbr;
@@ -80,8 +80,8 @@ char			*ft_dtoa_f(double nbr, int precision)
 	if (precision > 0)
 		nbr = extract_fraction(nbr, digits + numlen + 1,
 		precision, d_union.bits.exponent);
-	rounding_digits[16] = '\0';
-	extract_fraction(nbr, rounding_digits, 16, d_union.bits.exponent);
+	rounding_digits[15] = '\0';
+	extract_fraction(nbr, rounding_digits, 15, d_union.bits.exponent);
 	digits = ft_round_f(digits, rounding_digits);
 	return (digits);
 }

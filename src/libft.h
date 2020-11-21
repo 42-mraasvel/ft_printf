@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/24 19:27:20 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 11:53:15 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/21 17:00:54 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,26 @@ int					ft_putll(long long nbr, int precision);
 int					ft_putllu(unsigned long long nbr, int precision);
 int					ft_putllu_base(unsigned long long nbr,
 					int base, int precision, int upcase);
-int					ft_put_double(double number, int precision);
-char				*ft_round_double(char *string, double number,
-					int size, int precision);
-char				*extract_n_digits_from_double(double unit,
-					unsigned int n, int signif);
-char				*insert_radix_point(char *digits, int pow);
-int					ft_putdouble_sn(double unit, int precision, int hash);
+char				*ft_llutoa(unsigned long long nbr, int min_len);
+
 /*
 ** math functions
 */
 
 double				ft_pow(double x, double y);
 int					ft_numlen_dbl(double num);
+
+/*
+** Double functions
+*/
+
+int					dbl_exponent(double nbr);
+int					ft_put_double(double number, int precision);
+char				*ft_round_double(char *string, double number,
+					int size, int precision);
+int					ft_putdouble_sn(double unit, int precision, int hash);
+char				*extract_n_digits_from_double(double unit,
+					unsigned int n, int signif);
+char				*insert_radix_point(char *digits, int pow);
 
 #endif

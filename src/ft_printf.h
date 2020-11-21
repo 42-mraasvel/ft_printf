@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 12:46:43 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/21 15:29:44 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int					convert_udigit(va_list start, t_flags flags);
 int					convert_hex(va_list start, t_flags flags, int upcase);
 int					convert_n(va_list start, t_flags flags, int n);
 int					convert_f(va_list start, t_flags flags);
+int					convert_e(va_list start, t_flags flags);
 
 /*
-** ft_putnbr_hex.c
 ** conversion_utils.c
 ** I will put these functions in libft.
 */

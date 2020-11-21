@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 10:55:14 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 12:44:25 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/21 15:55:40 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char		*ft_round_f(char *nbr, char *rounder)
 	i = 1;
 	if (rounder[0] == '4')
 	{
-		while (rounder[i] == '9')
+		while (rounder[i] >= '9')
 			i++;
 		if (rounder[i] == '\0')
 			rounding_digit = '5';
