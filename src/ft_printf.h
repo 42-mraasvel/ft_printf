@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:00:04 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 21:15:05 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/21 12:46:43 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ typedef struct		s_flags
 int					ft_printf(const char *format, ...);
 
 /*
-** Union to extract bits from double;
-** for floating point conversion.
-*/
-
-typedef union		u_bits
-{
-	double					number;
-	struct			s_bitfields
-	{
-		unsigned long long	mant : 52;
-		unsigned int		expo : 11;
-		unsigned int		sign : 1;
-	}						bitfields;
-}					t_bits;
-
-/*
 ** conversion.c
 */
 
@@ -88,10 +72,7 @@ int					convert_digit(va_list start, t_flags flags);
 int					convert_udigit(va_list start, t_flags flags);
 int					convert_hex(va_list start, t_flags flags, int upcase);
 int					convert_n(va_list start, t_flags flags, int n);
-int					convert_double(va_list start, t_flags flags);
-int					convert_e(va_list start, t_flags flags);
-int					convert_g(va_list start, t_flags flags);
-int					convert_e_for_g(t_bits nbr, t_flags flags);
+int					convert_f(va_list start, t_flags flags);
 
 /*
 ** ft_putnbr_hex.c

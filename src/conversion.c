@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:01:17 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/20 11:25:52 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/21 12:46:35 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ int	conversion_caller(char conversion_type, va_list start, t_flags flags, int n)
 	if (conversion_type == 'n')
 		return (convert_n(start, flags, n));
 	if (conversion_type == 'f')
-		return (convert_double(start, flags));
+		return (convert_f(start, flags));
 	if (conversion_type == 'g')
-		return (convert_g(start, flags));
+		return (0);
 	if (conversion_type == 'e')
-		return (convert_e(start, flags));
+		return (0);
 	return (-1);
 }
 
