@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:17:37 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 15:35:59 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 12:18:06 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	output_e(t_double nbr, t_flags flags, char *digits)
 			return (-1);
 	return (chars > flags.field_width ? chars : flags.field_width);
 }
-#include <stdio.h>
+
 int			convert_e(va_list start, t_flags flags)
 {
 	t_double	nbr;

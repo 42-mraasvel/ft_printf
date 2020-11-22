@@ -6,12 +6,11 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 15:12:35 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 17:07:07 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 12:44:48 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h> //rm
 #include "ft_double.h"
 #include "libft.h"
 
@@ -20,7 +19,7 @@ static double	extract_n_significant_digits(double num, char *digits, int n)
 	double	ten;
 	int		c;
 
-	ten = ft_pow(10, dbl_exponent(num));
+	ten = ft_pow(10, ft_dbl_tenthpow(num));
 	while (n > 0)
 	{
 		c = (int)(num / ten);
@@ -109,7 +108,7 @@ char			*ft_dtoa_e(double num, int precision)
 	if (digits == NULL)
 		return (NULL);
 	digits[precision + 16] = '\0';
-	e = dbl_exponent(num);
+	e = ft_dbl_tenthpow(num);
 	num = extract_n_significant_digits(num, digits, precision + 16);
 	ft_strlcpy(rounding_digits, digits + precision + 1, 16);
 	digits[precision + 1] = '\0';

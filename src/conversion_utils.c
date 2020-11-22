@@ -6,16 +6,16 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/12 19:43:46 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 14:39:25 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 12:16:37 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft.h"
 #include "ft_printf.h"
+#include "libft.h"
 
-int	put_n_chars_fast(int n, unsigned char c)
+int					put_n_chars_fast(int n, unsigned char c)
 {
 	size_t	remains;
 	size_t	num;
@@ -42,33 +42,7 @@ int	put_n_chars_fast(int n, unsigned char c)
 	return (n);
 }
 
-// remove this function
-int	put_field_width(int field_width, int zero)
-{
-	int				bytes_written;
-	unsigned char	c;
-
-	bytes_written = 0;
-	if (zero == 1)
-		c = '0';
-	else
-		c = ' ';
-	if (field_width > 10000)
-	{
-		if (put_n_chars_fast(field_width, c) == -1)
-			return (-1);
-		return (field_width);
-	}
-	while (bytes_written < field_width)
-	{
-		if (write(1, &c, 1) == -1)
-			return (-1);
-		bytes_written++;
-	}
-	return (field_width);
-}
-
-int	put_fw(int field_width, int zero)
+int					put_fw(int field_width, int zero)
 {
 	if (zero == 1)
 	{
