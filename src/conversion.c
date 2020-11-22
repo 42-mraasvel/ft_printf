@@ -14,68 +14,17 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-/*
-** Puts flags in the same manner as printf.
-** Order: '#+ -0'
-** '+' overwrites ' '
-** '-' overwrites '0'
-** Return: -1 on write error.
-*/
-
-int	put_flags_on_error(t_flags flags)
+static int	invalid_conversion(char conversion_type, t_flags flags)
 {
-	if (write(1, "%", 1) == -1)
+	if (flags.minus == 0 && flags.field_width > 1)
+		if (put_fw(flags.field_width - 1, flags.zero) == -1)
+			return (-1);
+	if (write(1, &conversion_type, 1) == -1)
 		return (-1);
-	if (flags.hash == 1)
-		if (write(1, "#", 1) == -1)
+	if (flags.minus == 1 && flags.field_width > 1)
+		if (put_fw(flags.field_width - 1, 0) == -1)
 			return (-1);
-	if (flags.plus == 1)
-	{
-		if (write(1, "+", 1) == -1)
-			return (-1);
-	}
-	else if (flags.space == 1)
-		if (write(1, " ", 1) == -1)
-			return (-1);
-	if (flags.minus == 1)
-	{
-		if (write(1, "-", 1) == -1)
-			return (-1);
-	}
-	else if (flags.zero == 1)
-		if (write(1, "0", 1) == -1)
-			return (-1);
-	return (1);
-}
-
-/*
-** Mimics printf's output for invalid conversion character.
-** Return: Bytes written to stdout on success.
-** Return: -1 on error.
-*/
-//write does not return -1 here
-
-int	print_conversion_error(t_flags flags)
-{
-	int		bytes_printed;
-
-	bytes_printed = put_flags_on_error(flags);
-	if (bytes_printed == -1)
-		return (-1);
-	if (flags.hash == 1)
-		bytes_printed++;
-	if (flags.plus == 1 || flags.space == 1)
-		bytes_printed++;
-	if (flags.minus == 1 || flags.zero == 1)
-		bytes_printed++;
-	if (flags.field_width != 0)
-		ft_putnbr_fd(flags.field_width, 1);
-	if (flags.precision >= 0)
-	{
-		write(1, ".", 1);
-		ft_putnbr_fd(flags.precision, 1);
-	}
-	return (bytes_printed);
+	return (1 > flags.field_width ? 1 : flags.field_width);
 }
 
 /*
@@ -84,7 +33,7 @@ int	print_conversion_error(t_flags flags)
 ** Returns -1 if conversion char is invalid.
 */
 
-int	conversion_caller(char conversion_type, va_list start, t_flags flags, int n)
+static int	conversion_caller(char conversion_type, va_list start, t_flags flags, int n)
 {
 	if (conversion_type == 'c')
 		return (convert_character(start, flags));
@@ -133,7 +82,7 @@ int	conversion_caller(char conversion_type, va_list start, t_flags flags, int n)
 ** Index i will be incremented to point to the next char.
 */
 
-int	conversion(const char *format, size_t *i, va_list start, int n)
+int			conversion(const char *format, size_t *i, va_list start, int n)
 {
 	t_flags	flags;
 	int		return_value;
@@ -143,16 +92,10 @@ int	conversion(const char *format, size_t *i, va_list start, int n)
 	if (flags.field_width == -2 || flags.precision == -2)
 		return (-1);
 	flags = flags_sequence_three(format, i, flags);
-	if (format[*i] == '%')
-	{
-		(*i)++;
-		return (convert_percentage(flags));
-	}
-	else
-		return_value = conversion_caller(format[*i], start, flags, n);
+	return_value = conversion_caller(format[*i], start, flags, n);
 	if (return_value == -2)
-		return (print_conversion_error(flags));
-	if (return_value == -1)
+		return_value = invalid_conversion(format[*i], flags);
+	else if (return_value == -1)
 		return (-1);
 	(*i)++;
 	return (return_value);

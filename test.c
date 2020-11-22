@@ -94,7 +94,15 @@ int		test_e(int (*print)(const char *format, ...))
 
 int		main(int argc, char **argv)
 {
-	ft_printf("%.11e\n", 0.000000000010000000);
+	int ret;
+
+	ret = printf("pr: |%010%|\n");
+	printf("pr_ret: %d\n", ret);
+	ret = ft_printf("ft: |%010%|\n");
+	ft_printf("ft_ret: %d\n", ret);
+	// printf("|%010c|\n", 'b');
+
+	// ft_printf("%.11e\n", 0.000000000010000000);
 	// if (argc == 1)
 	// {
 	// 	ft_printf("FT_PRINTF\n");
