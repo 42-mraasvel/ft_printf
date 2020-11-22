@@ -6,14 +6,13 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:17:37 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/22 12:18:06 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 13:19:43 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
-#include "ft_printf.h"
 #include "ft_double.h"
+#include "libft.h"
 
 static int	get_echars_count(t_double nbr, t_flags flags, char *digits)
 {

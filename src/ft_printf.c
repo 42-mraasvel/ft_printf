@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/09 20:14:16 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/15 16:09:58 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 13:21:55 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** Bytes written are stored in the 'n' variable.
 */
 
-int		parse_string(const char *format, va_list start)
+static int		parse_string(const char *format, va_list start)
 {
 	size_t	i;
 	int		n;
@@ -54,7 +54,7 @@ int		parse_string(const char *format, va_list start)
 ** -1 on error.
 */
 
-int		ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	va_list	start;
 	int		bytes_written;

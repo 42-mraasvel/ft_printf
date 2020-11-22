@@ -6,15 +6,14 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/13 15:10:50 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/16 15:13:33 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 13:20:34 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 #include "ft_printf.h"
 
-int			get_xchars_count(unsigned long long nbr, t_flags flags)
+static int	get_xchars_count(unsigned long long nbr, t_flags flags)
 {
 	int	len;
 

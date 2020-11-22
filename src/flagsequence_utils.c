@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:30:05 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/14 09:32:35 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 13:19:19 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		check_max_accepted_value(const char *number)
 	leading_zeros = 0;
 	while (number[leading_zeros] == '0')
 		leading_zeros++;
-	ft_strlcpy(max_value, "2147483614", 11);
+	ft_strlcpy(max_value, "2147483645", 11);
 	while (ft_isdigit(number[i + leading_zeros]) != 0)
 	{
 		if (smaller == 0 && number[i + leading_zeros] < max_value[i])

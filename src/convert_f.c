@@ -6,12 +6,11 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 11:58:19 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/21 13:03:11 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 13:17:47 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "ft_printf.h"
 #include "ft_double.h"
 #include "libft.h"
 

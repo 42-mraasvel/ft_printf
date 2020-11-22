@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/14 09:11:51 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/11/14 20:31:47 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/11/22 13:21:26 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** If no flags are encountered, all values will be equal to 0.
 */
 
-t_flags	flags_sequence_one(const char *format, size_t *i)
+t_flags			flags_sequence_one(const char *format, size_t *i)
 {
 	t_flags flags;
 
@@ -45,7 +45,7 @@ t_flags	flags_sequence_one(const char *format, size_t *i)
 	return (flags);
 }
 
-t_flags	check_field_width(const char *format, size_t *i,
+static t_flags	check_field_width(const char *format, size_t *i,
 		t_flags flags, va_list start)
 {
 	if (format[*i] == '*')
@@ -72,7 +72,7 @@ t_flags	check_field_width(const char *format, size_t *i,
 	return (flags);
 }
 
-t_flags	check_precision(const char *format, size_t *i,
+static t_flags	check_precision(const char *format, size_t *i,
 		t_flags flags, va_list start)
 {
 	if (format[*i] == '.')
@@ -113,7 +113,7 @@ t_flags	check_precision(const char *format, size_t *i,
 ** in case of that error (integer overflow).
 */
 
-t_flags	flags_sequence_two(const char *format, size_t *i,
+t_flags			flags_sequence_two(const char *format, size_t *i,
 		t_flags flags, va_list start)
 {
 	flags = check_field_width(format, i, flags, start);
@@ -127,7 +127,8 @@ t_flags	flags_sequence_two(const char *format, size_t *i,
 ** Sequence 3 checks for 'l' 'll' 'h' and 'hh' flags.
 */
 
-t_flags	flags_sequence_three(const char *format, size_t *i, t_flags flags)
+t_flags			flags_sequence_three(const char *format,
+				size_t *i, t_flags flags)
 {
 	if (format[*i] == 'l')
 	{
