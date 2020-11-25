@@ -5,50 +5,50 @@
 #                                                      +:+                     #
 #    By: mraasvel <mraasvel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/11/09 20:13:52 by mraasvel      #+#    #+#                  #
-#    Updated: 2020/11/19 09:37:44 by mraasvel      ########   odam.nl          #
+#    Created: 2020/11/22 13:50:46 by mraasvel      #+#    #+#                  #
+#    Updated: 2020/11/22 17:38:43 by mraasvel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-LIBFT = libft/libft.a
-# SRC = ft_printf.c conversion.c\
-# 	flagsequence.c flagsequence_utils.c\
-# 	convert_percentage.c\
-# 	convert_character.c\
-# 	convert_string.c\
-# 	convert_pointer.c\
-# 	convert_digit.c\
-# 	convert_unsigned_digit.c\
-# 	convert_hex.c\
-# 	convert_n.c\
-# 	conversion_utils.c
-SRC = $(shell find $(SRCDIR) -name "*.c" -exec basename {} \;)
-OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+LIBFT = $(LIBFTDIR)/libft.a
 
+# Compilation
 CC = gcc
-CFLAGS = -c -Wall -Wextra -Werror
-DEBUG = -O0 -g -fsanitize=address -fsanitize=leak
+CFLAGS = -Wall -Werror -Wextra
 
-OBJDIR = obj
-SRCDIR = src
-IFLAG = -I include
+# Files
+SRC = ft_printf.c\
+flagsequence.c\
+flagsequence_utils.c\
+conversion.c\
+conversion_utils.c\
+convert_character.c\
+convert_string.c\
+convert_pointer.c\
+convert_digit.c\
+convert_unsigned_digit.c\
+convert_hex.c\
+ft_round_f.c\
+convert_n.c\
+convert_f.c\
+ft_dtoa_f.c\
+convert_e.c\
+ft_dtoa_e.c
+OBJ = $(SRC:.c=.o)
 
-vpath %.c src
-vpath %.o obj
+# Directories
+LIBFTDIR = libft
 
-all: dependencies $(NAME)
-.PHONY: all clean fclean re
+all: $(NAME)
 
-dependencies:
-	@mkdir -p obj
-	@mkdir -p src
-
-$(NAME): $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
 	cp $(LIBFT) $(NAME)
-	ar rs $(NAME) $(OBJ)
-$(OBJDIR)/%.o: %.c
-	gcc $(CFLAGS) -o $@ $<
+	ar rcs $(NAME) $(OBJ)
+%.o: %.c
+	$(CC) -o $@ -c $(CFLAGS) $<
+$(LIBFT):
+	$(MAKE) -C $(LIBFTDIR)
 
 clean:
 	rm -f $(OBJ)
@@ -56,6 +56,4 @@ fclean: clean
 	rm -f $(NAME)
 re: fclean all
 
-# Dependencies
-
-$(NAME): ./Makefile
+bonus: $(NAME)
