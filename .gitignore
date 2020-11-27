@@ -4,3 +4,5 @@ libftprintf.a
 *.o
 a.out
 a.out.dSYM/
+.vscode
+a.out*
