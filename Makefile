@@ -6,7 +6,7 @@
 #    By: mraasvel <mraasvel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/22 13:50:46 by mraasvel      #+#    #+#                  #
-#    Updated: 2020/11/27 19:00:17 by mraasvel      ########   odam.nl          #
+#    Updated: 2021/12/25 14:58:54 by mraasvel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,14 +41,13 @@ OBJ = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 LIBFTDIR = libft
 OBJDIR = obj
 
-all: dep $(NAME)
-dep:
-	@mkdir -p obj
+all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(OBJ)
 $(OBJDIR)/%.o: %.c
+	@mkdir -p $(@D)
 	$(CC) -o $@ -c $(CFLAGS) $<
 $(LIBFT):
 	$(MAKE) -C $(LIBFTDIR)
