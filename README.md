@@ -11,4 +11,3 @@ Custom implementation of printf function in c.
 **Supported conversions:**
 
 	- cspdiuxX%nfe
-	- floats are not good
